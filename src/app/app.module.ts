@@ -5,21 +5,35 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { Article } from '../pages/article/article';
+
+import { ApolloClient, createNetworkInterface } from 'apollo-client';
+import { ApolloModule } from 'apollo-angular';
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'https://mobileapi.wp.pl/v1/graphql'
+  }),
+});
+
+export function provideClient(): ApolloClient {
+  return client;
+}
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    Article
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ApolloModule.forRoot(provideClient),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    Article
   ],
   providers: [
     StatusBar,
