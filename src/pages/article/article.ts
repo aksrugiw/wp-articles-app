@@ -4,17 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-const ArticleQuery = gql`
-  query Article {
-    article(url: "https://sportowefakty.wp.pl/koszykowka/700011/blk-jordan-w-ostrovii-a-sosna-w-slezie-maliszewska-liczy-na-sile-zespolu")
-    {
-      id
-      body {
-        data
-      }
-    }
-}
-`;
+
 
 interface QueryResponse{
   article,
@@ -27,20 +17,34 @@ interface QueryResponse{
 })
 export class Article {
   article: any;
-
+  articleUrl;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private apollo: Apollo
   ) {
   }
-
+  
   ionViewDidLoad() {
+    this.articleUrl = this.navParams.get('articleUrl');
+    
+    const ArticleQuery = gql`
+    query Article {
+      article(url: "${this.articleUrl}")
+      {
+        id
+        body {
+          data
+        }
+      }
+    }
+    `;
     this.apollo.watchQuery<QueryResponse>({
       query: ArticleQuery
     }).subscribe(({data}) => {
       this.article = data.article.body[1].data;
     });
   }
-
+  
 }

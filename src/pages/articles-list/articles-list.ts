@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Article } from '../article/article';
+
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const ArticlesListQuery = gql`
   query ArticlesList {
     tileset(t: Article) {
-      title,
+      title
+      url
       img {
         url
         h
@@ -41,6 +44,12 @@ export class ArticlesList {
       query: ArticlesListQuery
     }).subscribe(({data}) => {
       this.articles = data.tileset
+    });
+  }
+
+  showArticle(articleUrl) {
+    this.navCtrl.push(Article, {
+      articleUrl: articleUrl
     });
   }
 
