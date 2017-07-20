@@ -7,6 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  Wybierz kategorię artykułu:
-  <p *ngFor="let category of categories; let i=index" ><button *ngIf="category" (click)="chooseCategory(i, category)">{{category}}</button></p>
+  
+  
+  <ion-list>
+    <ion-list-header>Wybierz kategorię artykułu:</ion-list-header>
+    <div *ngFor="let category of categories; let i=index">
+      <ion-item  *ngIf="category" (click)="chooseCategory(i, category)">
+        {{category}}
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>
