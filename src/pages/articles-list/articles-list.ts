@@ -43,6 +43,7 @@ export class ArticlesList {
         h
         w
       }
+      tags
     } 
   }
 `;

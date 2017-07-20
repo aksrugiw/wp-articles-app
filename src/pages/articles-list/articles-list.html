@@ -8,9 +8,18 @@
 
 
 <ion-content padding>
-<div *ngFor="let article of articles" (click)="showArticle(article.url)">
-    <p>{{article.title}}</p>
-    <img *ngIf="article.img" src="{{article.img.url}}" alt="">
 
-  </div>
+  <ion-card *ngFor="let article of articles" (click)="showArticle(article.url)">
+  <img  *ngIf="article.img" src="{{article.img.url}}"/>
+  <ion-card-content>
+    <ion-card-title>
+     {{article.title}}
+      </ion-card-title>
+  </ion-card-content>
+    <ion-row>
+    <ion-col>
+      <ion-badge *ngFor="let tag of article.tags">{{tag}}</ion-badge>
+    </ion-col>
+    </ion-row>
+</ion-card>
 </ion-content>
