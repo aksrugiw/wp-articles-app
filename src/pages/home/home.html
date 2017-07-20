@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Wiadomości WP
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Get articles by category:
+  Wybierz kategorię artykułu:
   <p *ngFor="let category of categories; let i=index" ><button *ngIf="category" (click)="chooseCategory(i, category)">{{category}}</button></p>
 </ion-content>
