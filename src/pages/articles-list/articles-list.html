@@ -16,7 +16,7 @@
 <ion-content padding>
 <div *ngFor="let article of articles" (click)="showArticle(article.url)">
     <p>{{article.title}}</p>
-    <img src="{{article.img.url}}" alt="">
+    <img *ngIf="article.img" src="{{article.img.url}}" alt="">
 
   </div>
 </ion-content>

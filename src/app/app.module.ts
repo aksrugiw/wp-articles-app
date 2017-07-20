@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { Article } from '../pages/article/article';
 import { ArticlesList } from '../pages/articles-list/articles-list';
+import { HomePage } from '../pages/home/home';
 
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';
@@ -25,7 +26,8 @@ export function provideClient(): ApolloClient {
   declarations: [
     MyApp,
     Article,
-    ArticlesList
+    ArticlesList,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ export function provideClient(): ApolloClient {
   entryComponents: [
     MyApp,
     Article,
-    ArticlesList
+    ArticlesList,
+    HomePage
   ],
   providers: [
     StatusBar,

@@ -6,22 +6,10 @@ import { Article } from '../article/article';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-const ArticlesListQuery = gql`
-  query ArticlesList {
-    tileset(t: Article) {
-      title
-      url
-      img {
-        url
-        h
-        w
-      }
-    } 
-  }
-`;
+
 
 interface QueryResponse{
-  tileset
+  articles
 }
 
 @Component({
@@ -29,6 +17,7 @@ interface QueryResponse{
   templateUrl: 'articles-list.html',
 })
 export class ArticlesList {
+  categoryId;
   articles;
 
   constructor(
@@ -40,10 +29,25 @@ export class ArticlesList {
 
 
   ionViewDidLoad() {
+    this.categoryId = this.navParams.get('cid');
+
+    const ArticlesListQuery = gql`
+  query ArticlesList {
+    articles(cid:${this.categoryId}, t: Article) {
+      title
+      url
+      img {
+        url
+        h
+        w
+      }
+    } 
+  }
+`;
     this.apollo.watchQuery<QueryResponse>({
       query: ArticlesListQuery
     }).subscribe(({data}) => {
-      this.articles = data.tileset;
+      this.articles = data.articles;
     });
   }
 

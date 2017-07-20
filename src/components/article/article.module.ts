@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicModule } from 'ionic-angular';
 import { Article } from './article';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { Article } from './article';
     Article,
   ],
   imports: [
-    IonicPageModule.forChild(Article),
+    IonicModule,
   ],
   exports: [
     Article
