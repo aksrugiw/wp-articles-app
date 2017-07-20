@@ -1,6 +1,6 @@
 # WP Article App
 
-You need ionic-cli [ionic-cli](https://github.com/ionic-team/ionic-cli) to run this project.
+You need [ionic-cli](https://github.com/ionic-team/ionic-cli) to run this project.
 
 Run `npm install -g ionic`
 
