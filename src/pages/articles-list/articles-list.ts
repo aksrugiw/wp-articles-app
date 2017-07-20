@@ -43,7 +43,7 @@ export class ArticlesList {
     this.apollo.watchQuery<QueryResponse>({
       query: ArticlesListQuery
     }).subscribe(({data}) => {
-      this.articles = data.tileset
+      this.articles = data.tileset;
     });
   }
 

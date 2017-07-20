@@ -6,9 +6,8 @@ import gql from 'graphql-tag';
 
 
 
-interface QueryResponse{
-  article,
-  t
+interface ArtQueryResponse{
+  article
 }
 
 @Component({
@@ -16,7 +15,7 @@ interface QueryResponse{
   templateUrl: 'article.html',
 })
 export class Article {
-  article: any;
+  articleData: any;
   articleUrl;
   
   constructor(
@@ -34,16 +33,16 @@ export class Article {
       article(url: "${this.articleUrl}")
       {
         id
-        body {
+        body(t: HTML) {
           data
         }
       }
     }
     `;
-    this.apollo.watchQuery<QueryResponse>({
+    this.apollo.watchQuery<ArtQueryResponse>({
       query: ArticleQuery
     }).subscribe(({data}) => {
-      this.article = data.article.body[1].data;
+      this.articleData = data.article.body;
     });
   }
   

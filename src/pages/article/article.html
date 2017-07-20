@@ -14,5 +14,8 @@
 
 
 <ion-content padding>
-<p [innerHTML]="article"></p>
+ <div *ngFor="let article of articleData"> 
+  <p [innerHTML]="article.data"></p>
+ </div> 
 </ion-content>
+
