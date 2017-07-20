@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController} from 'ionic-angular';
 
 import { Article } from '../article/article';
 
@@ -24,6 +24,7 @@ export class ArticlesList {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     private apollo: Apollo
   ) {
   }
@@ -51,13 +52,23 @@ export class ArticlesList {
       query: ArticlesListQuery
     }).subscribe(({data}) => {
       this.articles = data.articles;
-    });
+    },
+    error => this.handleError(error));
   }
 
   showArticle(articleUrl) {
     this.navCtrl.push(Article, {
       articleUrl: articleUrl
     });
+  }
+
+  handleError(error) {
+    let alert = this.alertCtrl.create({
+      title: 'Wystąpił błąd',
+      subTitle: 'Treść błędu: ' + error,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

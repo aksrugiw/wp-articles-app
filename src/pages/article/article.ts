@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -21,6 +21,7 @@ export class Article {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     private apollo: Apollo
   ) {
   }
@@ -44,7 +45,16 @@ export class Article {
       query: ArticleQuery
     }).subscribe(({data}) => {
       this.articleData = data.article;
-    });
+    },
+    error => this.handleError(error));
   }
   
+   handleError(error) {
+    let alert = this.alertCtrl.create({
+      title: 'Wystąpił błąd',
+      subTitle: 'Treść błędu: ' + error,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }
