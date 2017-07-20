@@ -19,8 +19,8 @@ interface QueryResponse{
 export class ArticlesList {
   categoryId;
   categoryName;
-  articles;
-
+  articles: QueryResponse;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,26 +28,24 @@ export class ArticlesList {
     private apollo: Apollo
   ) {
   }
-
-
+  
+  
   ionViewDidLoad() {
     this.categoryId = this.navParams.get('cid');
     this.categoryName = this.navParams.get('categoryName');
-
+    
     const ArticlesListQuery = gql`
-  query ArticlesList {
-    articles(cid:${this.categoryId}, t: Article) {
-      title
-      url
-      img {
+    query ArticlesList {
+      articles(cid:${this.categoryId}, t: Article) {
+        title
         url
-        h
-        w
-      }
-      tags
-    } 
-  }
-`;
+        img {
+          url
+        }
+        tags
+      } 
+    }
+    `;
     this.apollo.watchQuery<QueryResponse>({
       query: ArticlesListQuery
     }).subscribe(({data}) => {
@@ -55,13 +53,13 @@ export class ArticlesList {
     },
     error => this.handleError(error));
   }
-
+  
   showArticle(articleUrl) {
     this.navCtrl.push(Article, {
       articleUrl: articleUrl
     });
   }
-
+  
   handleError(error) {
     let alert = this.alertCtrl.create({
       title: 'Wystąpił błąd',
@@ -70,5 +68,5 @@ export class ArticlesList {
     });
     alert.present();
   }
-
+  
 }

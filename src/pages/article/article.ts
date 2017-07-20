@@ -15,7 +15,7 @@ interface ArtQueryResponse{
   templateUrl: 'article.html',
 })
 export class Article {
-  articleData;
+  articleData: ArtQueryResponse;
   articleUrl;
   
   constructor(
@@ -33,7 +33,6 @@ export class Article {
     query Article {
       article(url: "${this.articleUrl}")
       {
-        id
         title
         body(t: HTML) {
           data
@@ -49,7 +48,7 @@ export class Article {
     error => this.handleError(error));
   }
   
-   handleError(error) {
+  handleError(error) {
     let alert = this.alertCtrl.create({
       title: 'Wystąpił błąd',
       subTitle: 'Treść błędu: ' + error,
