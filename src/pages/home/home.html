@@ -8,5 +8,5 @@
 
 <ion-content padding>
   Get articles by category:
-  <p *ngFor="let category of categories; let i=index" ><button *ngIf="category" (click)="chooseCategory(i)">{{category}}</button></p>
+  <p *ngFor="let category of categories; let i=index" ><button *ngIf="category" (click)="chooseCategory(i, category)">{{category}}</button></p>
 </ion-content>

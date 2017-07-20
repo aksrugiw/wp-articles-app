@@ -15,7 +15,7 @@ interface ArtQueryResponse{
   templateUrl: 'article.html',
 })
 export class Article {
-  articleData: any;
+  articleData;
   articleUrl;
   
   constructor(
@@ -33,6 +33,7 @@ export class Article {
       article(url: "${this.articleUrl}")
       {
         id
+        title
         body(t: HTML) {
           data
         }
@@ -42,7 +43,7 @@ export class Article {
     this.apollo.watchQuery<ArtQueryResponse>({
       query: ArticleQuery
     }).subscribe(({data}) => {
-      this.articleData = data.article.body;
+      this.articleData = data.article;
     });
   }
   

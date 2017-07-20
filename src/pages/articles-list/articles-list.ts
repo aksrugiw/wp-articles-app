@@ -18,6 +18,7 @@ interface QueryResponse{
 })
 export class ArticlesList {
   categoryId;
+  categoryName;
   articles;
 
   constructor(
@@ -30,6 +31,7 @@ export class ArticlesList {
 
   ionViewDidLoad() {
     this.categoryId = this.navParams.get('cid');
+    this.categoryName = this.navParams.get('categoryName');
 
     const ArticlesListQuery = gql`
   query ArticlesList {

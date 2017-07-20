@@ -14,9 +14,10 @@ export class HomePage {
     this.categories = [null, 'Sport', 'Finanse', 'TV', 'Film', 'Motoryzacja i Technika', 'Inne'];
   }
 
-  chooseCategory(index) {
+  chooseCategory(index, name) {
     this.navCtrl.push(ArticlesList, {
-      cid: index
+      cid: index,
+      categoryName: name
     })
   }
 

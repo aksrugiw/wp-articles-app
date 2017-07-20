@@ -7,15 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>article</ion-title>
+     <ion-title>{{articleData?.title}}</ion-title> 
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- <div *ngFor="let article of articleData"> 
+  <div *ngFor="let article of articleData?.body"> 
   <p [innerHTML]="article.data"></p>
- </div> 
+ </div>  
 </ion-content>
 
